@@ -12,12 +12,11 @@ class SearchViewBody extends StatelessWidget {
       children: const [
         Padding(
           padding: EdgeInsetsGeometry.symmetric(horizontal: 30, vertical: 15),
-          child: CustomSearchTextField()),
-          Expanded(child: SearchResultListView()),
+          child: CustomSearchTextField(),
+        ),
+        Expanded(child: SearchResultListView()),
       ],
     );
   }
 }
-
-
 
