@@ -1,33 +1,46 @@
-# Bookly App
+# Bookly App 📚✨
 
-A Flutter application for browsing and searching books, powered by the Google Books API.
+A beautiful book discovery app built with **Flutter**.  
+This project was developed to practice advanced Flutter patterns, state management, and API integration. 🚀
 
-## Features
-- Splash screen with animated logo
-- Home screen with featured and newest books
-- Book details view with similar books suggestions
-- Search functionality for books
-- Uses BLoC for state management
-- Modern UI with Google Fonts
-- Caching and image loading optimizations
+[![Flutter](https://img.shields.io/badge/Flutter-3.9.0-blue)](https://flutter.dev)  
+[![Dart](https://img.shields.io/badge/Dart-3.9.0-blue)](https://dart.dev)  
 
-## Tech Stack
-- **Flutter** (Dart)
-- **State Management:** flutter_bloc
-- **Dependency Injection:** get_it
-- **Networking:** dio
-- **Routing:** go_router
-- **Image Caching:** cached_network_image
-- **External API:** Google Books API
+---
 
-## Getting Started
+## Features ✨
+- **Book Discovery** 🔍:  
+  - Browse featured and newest books.
+  - Book details with similar book suggestions.
+- **Search** 📝:  
+  - Search for books by title or topic.
+- **Modern UI** 🎨:  
+  - Google Fonts, custom widgets, and smooth navigation.
+- **State Management** 🧩:  
+  - BLoC pattern for scalable state handling.
+- **API Integration** 🌐:  
+  - Uses Google Books API for real data.
+- **Image Caching** 🖼️:  
+  - Fast, efficient image loading and caching.
 
-### Prerequisites
-- [Flutter SDK](https://flutter.dev/docs/get-started/install)
-- Dart SDK (comes with Flutter)
+---
 
-### Installation
-1. **Clone the repository:**
+## Screenshots 📸
+
+<div align="center">
+
+| 🏠 Home | 📖 Book Details |
+|:---:|:---:|
+| <img src="assets/screenshots/bookly view 1.jpg" width=250> | <img src="assets/screenshots/bookly view 2.jpg" width=250> |
+
+**More screenshots coming soon!**
+
+</div>
+
+---
+
+## Installation ⚙️
+1. **Clone the repository:**  
    ```bash
    git clone <repo-url>
    cd Bookly\ App
@@ -41,20 +54,37 @@ A Flutter application for browsing and searching books, powered by the Google Bo
    flutter run
    ```
 
-## Directory Structure
-- `lib/`
-  - `core/` – Utilities, errors, service locator, API service
-  - `features/`
-    - `home/` – Home, book details, featured/newest books
-    - `search/` – Search UI and logic
-    - `splash/` – Splash screen
-  - `main.dart` – App entry point
+---
 
-## Configuration
-- **Assets:** Images are located in `assets/images/` and configured in `pubspec.yaml`.
-- **Lints:** Uses `flutter_lints` for code quality.
+## Project Structure 📂
+```bash
+lib/
+├── constants.dart
+├── core/            # Utilities, errors, service locator, API service
+├── features/
+│   ├── home/        # Home, book details, featured/newest books
+│   ├── search/      # Search UI and logic
+│   └── splash/      # Splash screen
+└── main.dart        # App entry point
+assets/
+└── images/          # App images
+└── screenshots/     # App screenshots
+```
 
-## Contribution
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+---
+
+## Key Learnings 🧠
+- Integrated a public API (Google Books) for real-world data.
+- Used BLoC and dependency injection for scalable architecture.
+- Built a modern, responsive UI with custom widgets and Google Fonts.
+- Implemented image caching for performance.
+- Practiced clean code and project structure in Flutter.
+
+---
+
+## Acknowledgements 🙏
+[![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/) ↗ for the framework <br>
+[![Google Books API](https://img.shields.io/badge/Google%20Books%20API-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://developers.google.com/books) ↗ for book data <br>
+ChatGPT for code and documentation help 😂
 
 ---
