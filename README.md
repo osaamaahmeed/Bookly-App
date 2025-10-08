@@ -1,10 +1,13 @@
 # Bookly App 📚✨
 
+[![APK Download](https://img.shields.io/badge/Download-APK-brightgreen)](https://drive.google.com/file/d/17GmYjXn_upFVfz20njkbP2sCYU3YMnZh/view?usp=sharing)
+[![Flutter](https://img.shields.io/badge/Flutter-3.9.0-blue)](https://flutter.dev)  
+[![Dart](https://img.shields.io/badge/Dart-3.9.0-blue)](https://dart.dev)  
+
+
 A beautiful book discovery app built with **Flutter**.  
 This project was developed to practice advanced Flutter patterns, state management, and API integration. 🚀
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.9.0-blue)](https://flutter.dev)  
-[![Dart](https://img.shields.io/badge/Dart-3.9.0-blue)](https://dart.dev)  
 
 ---
 
@@ -79,6 +82,24 @@ assets/
 - Built a modern, responsive UI with custom widgets and Google Fonts.
 - Implemented image caching for performance.
 - Practiced clean code and project structure in Flutter.
+
+---
+
+## 🚧 To-Do / Next Improvements
+
+### 🧭 Navigation & UX
+- [ ] Refine the navigation flow across views
+- [ ] Improve transition from Splash View to Home View
+
+### 🔍 Features
+- [ ] Implement full search functionality
+- [ ] Integrate another book API with a working rating system
+
+### 🎨 Design & Branding
+- [ ] Add a custom app icon
+
+### 🍎 Testing
+- [ ] Test app experience on iPhone (iOS)
 
 ---
 
