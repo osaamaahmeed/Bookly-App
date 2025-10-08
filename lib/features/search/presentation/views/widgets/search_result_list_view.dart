@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class SearchResultListView extends StatelessWidget {
@@ -9,11 +10,11 @@ class SearchResultListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text('gi'),
+          child: Text('Comming Soon', style: Styles.textStyle18,),
           // child: BookListViewItem(),
         );
       },
-      itemCount: 10,
+      itemCount: 1,
       padding: EdgeInsets.zero,
       // shrinkWrap: true,
       // physics: const NeverScrollableScrollPhysics(),
