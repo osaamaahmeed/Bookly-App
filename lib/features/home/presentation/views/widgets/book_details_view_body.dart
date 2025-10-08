@@ -1,10 +1,11 @@
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_detials_section.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_detials_list_view_section.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
-  const BookDetailsViewBody({super.key});
-
+  const BookDetailsViewBody({super.key, required this.bookModel});
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -13,9 +14,9 @@ class BookDetailsViewBody extends StatelessWidget {
           hasScrollBody: false,
           child: Column(
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
-                child: BookDetialsSection(),
+                child: BookDetialsSection(bookModel: bookModel,),
               ),
               const Expanded(child: SizedBox(height: 50)),
               const CustomBookDetialsListViewSection(),
