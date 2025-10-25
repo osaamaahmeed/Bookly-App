@@ -12,7 +12,7 @@ final class NewestBooksInitial extends NewestBooksState {}
 final class NewestBooksLoading extends NewestBooksState {}
 
 final class NewestBooksSuccess extends NewestBooksState {
-  final List<BookModel> books;
+  final List<BookEntity> books;
   const NewestBooksSuccess(this.books);
 }
 

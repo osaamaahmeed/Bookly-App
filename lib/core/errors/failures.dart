@@ -40,7 +40,7 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 401) {
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       return ServerFailure(errMessage: response['error']['messsage']);
     } else if (statusCode == 404) {
       return ServerFailure(errMessage: 'method not found, try again later');
@@ -55,3 +55,7 @@ class ServerFailure extends Failure {
     }
   }
 }
+
+// class CachFailure extends Failure {}
+
+// class NetworkFailure extends Failure {}
