@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CustomBookImageLoadingIndecator extends StatelessWidget {
   const CustomBookImageLoadingIndecator({super.key});
