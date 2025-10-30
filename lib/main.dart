@@ -17,9 +17,9 @@ void main() async {
   setUpServiceLocator();
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-  await Hive.openBox<BookEntity>(kFeaturedBox); 
-  await Hive.openBox<BookEntity>(kNewestBox); 
-  Bloc.observer = SimpleBlocObserver();
+  await Hive.openBox<BookEntity>(kFeaturedBox);
+  await Hive.openBox<BookEntity>(kNewestBox);
+  Bloc.observer = MyBlocObserver();
   runApp(const BooklyApp());
 }
 
@@ -30,12 +30,18 @@ class BooklyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              FeaturedBooksCubit(FetchFeaturedBooksUseCase(homeRepo: getIt.get<HomeRepoImplemetnation>()))..fetchFeaturedBooks()
+          create: (context) => FeaturedBooksCubit(
+            FetchFeaturedBooksUseCase(
+              homeRepo: getIt.get<HomeRepoImplemetnation>(),
+            ),
+          )..fetchFeaturedBooks(),
         ),
         BlocProvider(
-          create: (context) =>
-              NewestBooksCubit(FetchNewestBooksUseCase(homeRepo: getIt.get<HomeRepoImplemetnation>()))..fetchNewestBooksUseCase()  ,
+          create: (context) => NewestBooksCubit(
+            FetchNewestBooksUseCase(
+              homeRepo: getIt.get<HomeRepoImplemetnation>(),
+            ),
+          )..fetchNewestBooks(),
         ),
       ],
       child: MaterialApp.router(

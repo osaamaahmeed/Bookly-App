@@ -21,15 +21,18 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   @override
   void initState() {
     super.initState();
-    _scrollController =  ScrollController();
+    _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
   }
 
-  void _scrollListener () async {
-    if (_scrollController.position.pixels >= 0.7 * _scrollController.position.maxScrollExtent) {
+  void _scrollListener() async {
+    if (_scrollController.position.pixels >=
+        0.7 * _scrollController.position.maxScrollExtent) {
       if (!isLoading) {
         isLoading = true;
-        await BlocProvider.of<FeaturedBooksCubit>(context).fetchFeaturedBooks(pageNumber: nextPage++);
+        await BlocProvider.of<FeaturedBooksCubit>(
+          context,
+        ).fetchFeaturedBooks(pageNumber: nextPage++);
         isLoading = false;
       }
     }
@@ -46,6 +49,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.3,
       child: ListView.builder(
+        controller: _scrollController,
         padding: EdgeInsets.only(left: 12),
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -59,7 +63,9 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
                   context,
                 ).push(AppRouter.kBookDetialsView, extra: widget.books[index]);
               },
-              child: CustomBookImage(imageUrl: widget.books[index].image ?? " "),
+              child: CustomBookImage(
+                imageUrl: widget.books[index].image ?? " ",
+              ),
             ),
           );
         },

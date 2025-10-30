@@ -21,7 +21,9 @@ abstract class AppRouter {
       GoRoute(
         path: '/bookDetialsView',
         builder: (context, state) => BlocProvider(
-          create: (context) => NewestBooksCubit(getIt.get<HomeRepoImplemetnation>() as FetchNewestBooksUseCase),
+          create: (context) => NewestBooksCubit(
+            getIt.get<FetchNewestBooksUseCase>(),
+          ),
           child: BookDetailsView(book: state.extra as BookEntity),
         ),
       ),

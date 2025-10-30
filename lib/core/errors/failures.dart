@@ -41,7 +41,11 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(errMessage: response['error']['messsage']);
+      final error = response['error'];
+      final errorMsg = (error != null && error['message'] != null)
+          ? error['message'].toString()
+          : 'Authorization error or Bad request';
+      return ServerFailure(errMessage: errorMsg);
     } else if (statusCode == 404) {
       return ServerFailure(errMessage: 'method not found, try again later');
     } else if (statusCode == 500) {

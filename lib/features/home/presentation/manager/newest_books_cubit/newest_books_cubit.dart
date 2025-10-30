@@ -7,15 +7,31 @@ part 'newest_books_state.dart';
 
 class NewestBooksCubit extends Cubit<NewestBooksState> {
   NewestBooksCubit(this.fetchNewestBooksUseCase) : super(NewestBooksInitial());
-  // final HomeRepo homeRepo;
   final FetchNewestBooksUseCase fetchNewestBooksUseCase;
 
-  Future<void> fetchNewestBooks() async {
-    emit(NewestBooksLoading());
-    var result = await fetchNewestBooksUseCase.call();
-    result.fold(
-      (failure) => emit(NewestBooksFailure(failure.errMessage)),
-      (books) => emit(NewestBooksSuccess(books)),
-    );
+  Future<void> fetchNewestBooks({int pageNumber = 0}) async {
+    if (pageNumber == 0) {
+      emit(NewestBooksLoading());
+    } else {
+      emit(NewestBooksPaggingLoading([]));
+    }
+    var result = await fetchNewestBooksUseCase.call(pageNumber);
+    result.fold((failure) {
+      if (pageNumber == 0) {
+        emit(NewestBooksFailure(failure.errMessage));
+      } else {
+        emit(NewestBooksPaggingFailure(failure.errMessage));
+      }
+    }, (books) {
+      if (state is NewestBooksSuccess && pageNumber != 0) {
+        final currentBooks = (state as NewestBooksSuccess).books;
+        emit(NewestBooksSuccess([...currentBooks, ...books]));
+      } else if (state is NewestBooksPaggingLoading && pageNumber != 0) {
+        final currBooks = (state as NewestBooksPaggingLoading).books;
+        emit(NewestBooksSuccess([...currBooks, ...books])); 
+      } else {
+        emit(NewestBooksSuccess(books));
+      }
+    });
   }
 }
