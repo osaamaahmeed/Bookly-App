@@ -13,6 +13,6 @@ class CustomBookImageLoadingIndecator extends StatelessWidget {
           color: Colors.grey[50],
         )
       ),
-    );;
+    );
   }
 }

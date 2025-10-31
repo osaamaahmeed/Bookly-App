@@ -12,12 +12,14 @@ class NewestBooksListViewBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewestBooksCubit, NewestBooksState>(
       builder: (BuildContext context, state) {
-        if (state is NewestBooksSuccess) {
+        if (state is NewestBooksSuccess ) {
           return NewestBooksListView(books: state.books, showBottomLoader: false,);
         } else if (state is NewestBooksPaggingLoading) {
           return NewestBooksListView(books: state.books, showBottomLoader: true);
         }
         else if (state is NewestBooksFailure) {
+          return CustomErrorWidget(errMessage: state.errMessage);
+        } else if (state is NewestBooksPaggingFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
           return NewestBooksListView(books: [], showBottomLoader: true);
