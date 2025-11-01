@@ -13,18 +13,20 @@ This project was developed to practice advanced Flutter patterns, state manageme
 
 ## Features ✨
 - **Book Discovery** 🔍:  
-  - Browse featured and newest books.
+  - Browse featured and newest books with optimized pagination.
   - Book details with similar book suggestions.
 - **Search** 📝:  
-  - Search for books by title or topic.
+  - 🚧 Coming soon: Search for books by title or topic.
 - **Modern UI** 🎨:  
   - Google Fonts, custom widgets, and smooth navigation.
 - **State Management** 🧩:  
   - BLoC pattern for scalable state handling.
 - **API Integration** 🌐:  
   - Uses Google Books API for real data.
-- **Image Caching** 🖼️:  
-  - Fast, efficient image loading and caching.
+- **Performance Optimizations** ⚡:  
+  - Smooth scrolling with efficient pagination.
+  - API response caching using Hive for faster loading.
+  - Cached network images for optimal performance.
 
 ---
 
@@ -77,11 +79,24 @@ assets/
 ---
 
 ## Key Learnings 🧠
-- Integrated a public API (Google Books) for real-world data.
-- Used BLoC and dependency injection for scalable architecture.
-- Built a modern, responsive UI with custom widgets and Google Fonts.
-- Implemented image caching for performance.
-- Practiced clean code and project structure in Flutter.
+- Mastered **Clean Architecture** principles for scalable Flutter apps.
+- Implemented **BLoC pattern** with **GetIt** for dependency injection.
+- Integrated Google Books API with **Hive caching** for offline support.
+- Built custom **pagination system** for smooth infinite scrolling.
+- Solved performance bottlenecks: optimized scroll performance and memory management.
+- Created responsive UI with custom widgets and Google Fonts.
+- Practiced MVVM and evolved to Clean Architecture throughout development.
+
+---
+
+## Tech Stack 🛠️
+- **Framework:** Flutter 3.9.0 | Dart 3.9.0
+- **State Management:** BLoC Pattern
+- **Dependency Injection:** GetIt
+- **Local Caching:** Hive
+- **API:** Google Books API
+- **Image Caching:** Cached Network Image
+- **Architecture:** Clean Architecture
 
 ---
 
