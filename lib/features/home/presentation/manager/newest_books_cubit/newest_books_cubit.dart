@@ -87,8 +87,7 @@ class NewestBooksCubit extends Cubit<NewestBooksState> {
 
   Future<void> fetchNewestBooks({int pageNumber = 0}) async {
     if (isMax) return;
-    if (state is NewestBooksLoading || state is NewestBooksPaggingLoading)
-      return;
+    if (state is NewestBooksLoading || state is NewestBooksPaggingLoading) return;
 
     try {
       if (pageNumber == 0) {
@@ -107,7 +106,7 @@ class NewestBooksCubit extends Cubit<NewestBooksState> {
           if (pageNumber == 0) {
             emit(NewestBooksFailure(failure.errMessage));
           } else {
-            emit(NewestBooksPaggingFailure(failure.errMessage));
+            emit(NewestBooksPaggingFailure(failure.errMessage)); // -> show snak bar with the current books
           }
         },
         (newBooks) {

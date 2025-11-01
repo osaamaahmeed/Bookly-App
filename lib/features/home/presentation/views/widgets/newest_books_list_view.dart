@@ -8,30 +8,29 @@ class NewestBooksListView extends StatelessWidget {
     super.key,
     required this.books,
     required this.showBottomLoader,
+    required this.loading,
   });
   final List<BookEntity> books;
   final bool showBottomLoader;
+  final bool loading;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      // controller: scrollController,
       itemBuilder: (context, index) {
-        if (index < books.length) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: BookListViewItem(bookEntity: books[index]),
-          );
-        } else {
-          return Padding(
-            padding: EdgeInsetsGeometry.symmetric(vertical: 16),
-            child: Center(child: CustomLoadingIndecator()),
-          );
+        if (index >= books.length) {
+          return const CustomLoadingIndecator();
         }
+        return Padding(
+          key: ValueKey('${books[index].bookId}_$index'),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: BookListViewItem(bookEntity: books[index]),
+        );
       },
-      itemCount: showBottomLoader ? books.length+1 : books.length,
+      itemCount: loading ? books.length + 1 : books.length,
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
+      cacheExtent: 200,
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:bookly_app/core/widgets/custom_error.dart';
 import 'package:bookly_app/core/widgets/custom_loading_indecator.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app/features/home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
@@ -11,30 +12,40 @@ class CustomBookDetialsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewestBooksCubit, NewestBooksState>(
       builder: (context, state) {
+        List<BookEntity> books = [];
+        
         if (state is NewestBooksSuccess) {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.15,
-            child: ListView.builder(
-              padding: const EdgeInsets.only(left: 16),
-              scrollDirection: Axis.horizontal,
-              itemCount: state.books.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: CustomBookImage(
-                    imageUrl:
-                        state.books[index].image ??
-                        '',
-                  ),
-                );
-              },
-            ),
-          );
+          books = state.books;
+        } else if (state is NewestBooksPaggingLoading) {
+          books = state.books;
+        } else if (state is NewestBooksPaggingFailure) {
+          // Show existing books even on pagination failure
+          final cubit = BlocProvider.of<NewestBooksCubit>(context);
+          books = cubit.allBooks;
         } else if (state is NewestBooksFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
-        } else {
+        }
+        
+        if (books.isEmpty) {
           return CustomLoadingIndecator();
         }
+        
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.15,
+          child: ListView.builder(
+            padding: const EdgeInsets.only(left: 16),
+            scrollDirection: Axis.horizontal,
+            itemCount: books.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: CustomBookImage(
+                  imageUrl: books[index].image ?? '',
+                ),
+              );
+            },
+          ),
+        );
       },
     );
   }

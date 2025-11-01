@@ -2,7 +2,7 @@ import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/featured_book_list_view_bloc_consumer.dart';
-import 'package:bookly_app/features/home/presentation/views/widgets/newest_books_list_view_bloc_builder.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/newest_books_list_view_bloc_consumber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,7 +26,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   void onScroll () {
     if (isBottom && !isLoading) {
-      debugPrint('Now ?');
       loadMoreBooks();
     }
   }
@@ -35,13 +34,24 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     if (!scrollController.hasClients) return false;
     final maxScroll = scrollController.position.maxScrollExtent;
     final currScroll = scrollController.offset;
-    return currScroll >= (maxScroll*0.7);
+    return currScroll >= (maxScroll * 0.7);
   }
 
-  void loadMoreBooks () async {
-    isLoading = true;
-    await BlocProvider.of<NewestBooksCubit>(context).fetchNewestBooks(pageNumber: nextPage++);
-    isLoading = false;
+  Future<void> loadMoreBooks () async {
+    if (isLoading) return;
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      await BlocProvider.of<NewestBooksCubit>(context).fetchNewestBooks(pageNumber: nextPage);
+      if (mounted) nextPage++;
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
   }
 
   @override
