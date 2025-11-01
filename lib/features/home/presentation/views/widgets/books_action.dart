@@ -1,6 +1,6 @@
-import 'package:bookly_app/core/utils/functions/lauch_url.dart';
 import 'package:bookly_app/core/widgets/custom_button.dart';
 import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
+import 'package:bookly_app/features/home/presentation/views/book_preview_view.dart';
 import 'package:flutter/material.dart';
 
 class BookAction extends StatelessWidget {
@@ -24,7 +24,40 @@ class BookAction extends StatelessWidget {
         Expanded(
           child: CustomButton(
             onPressed: () async {
-              launchCustomUrl(context, 'bookEntity.volumeInfo.previewLink');
+              final previewLink = bookEntity.previewLink;
+              
+              if (previewLink == null || previewLink.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Unavailable to preview'),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+                return;
+              }
+
+              // Validate URL format
+              try {
+                final uri = Uri.parse(previewLink);
+                if (!uri.hasScheme || (!uri.scheme.startsWith('http'))) {
+                  throw FormatException('Invalid URL');
+                }
+                
+                // Navigate to preview view
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BookPreviewView(url: previewLink),
+                  ),
+                );
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Unavailable link'),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
             },
             backgroundColor: const Color(0xffEF8262),
             textColor: Colors.white,
@@ -40,11 +73,9 @@ class BookAction extends StatelessWidget {
   }
 
   String getText(BookEntity bookEntity) {
-    // if (BookEntity.volumeInfo.previewLink == null) {
-      // return 'Not Availabe';
-    // } else {
-      // return 'Preview';
-    // }
+    if (bookEntity.previewLink == null || bookEntity.previewLink!.isEmpty) {
+      return 'preview';
+    }
     return 'preview';
   }
 }

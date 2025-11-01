@@ -31,6 +31,7 @@ class BookModel extends BookEntity {
          image: volumeInfo?.imageLinks?.smallThumbnail ?? '',
          price: 0.0,
          raiting: 4.8,
+         previewLink: volumeInfo?.previewLink,
        );
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
