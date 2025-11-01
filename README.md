@@ -121,6 +121,5 @@ assets/
 ## Acknowledgements 🙏
 [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/) ↗ for the framework <br>
 [![Google Books API](https://img.shields.io/badge/Google%20Books%20API-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://developers.google.com/books) ↗ for book data <br>
-ChatGPT for code and documentation help 😂
 
 ---
